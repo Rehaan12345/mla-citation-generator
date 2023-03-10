@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>MLA Citation Generator</title>
+    <style>
+      /* Basic styling for the form */
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="submit"] {
+        margin-top: 20px;
+      }
+      #citation {
+        margin-top: 20px;
+        white-space: pre-line;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>MLA Citation Generator</h1>
+    <form>
+      <label>
+        Author's Name:
+        <input type="text" name="author" />
+      </label>
+      <label>
+        Title of the Source:
+        <input type="text" name="title" />
+      </label>
+      <label>
+        Title of the Container:
+        <input type="text" name="container-title" />
+      </label>
+      <label>
+        Publisher:
+        <input type="text" name="publisher" />
+      </label>
+      <label>
+        Publication Date (YYYY-MM-DD):
+        <input type="text" name="publication-date" />
+      </label>
+      <label>
+        URL (if applicable):
+        <input type="text" name="url" />
+      </label>
+      <input type="submit" value="Generate Citation" />
+    </form>
+    <div id="citation"></div>
+    <script>
+      // Get references to the form and citation elements
+      const form = document.querySelector("form");
+      const citation = document.querySelector("#citation");
+
+      // Add an event listener to the form
+      form.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent the form from submitting
+        const author = form.elements["author"].value;
+        const title = form.elements["title"].value;
+        const containerTitle = form.elements["container-title"].value;
+        const publisher = form.elements["publisher"].value;
+        const publicationDate = form.elements["publication-date"].value;
+        const url = form.elements["url"].value;
+        let citationString = `${author}. "${title}." ${containerTitle}, ${publisher}, ${publicationDate}.`;
+        if (url) {
+          citationString += ` ${url}.`;
+        }
+        citation.textContent = citationString;
+      });
+    </script>
+  </body>
+</html>
